@@ -3,10 +3,15 @@ import GifList from './components/GifList';
 import GifForm from './components/GifForm';
 import React from 'react';
 import './App.css';
+import {useEffect} from 'react'
+import {getGifs} from "./actions"
 
 function App(props) {
-  const {loading, error} = props
+  const {loading, error, getGifs} = props
 
+  useEffect(() => {
+    getGifs("bouncing");
+  }, [])
 
   return (
     <div className="App">
@@ -29,4 +34,5 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+
+export default connect(mapStateToProps, {getGifs})(App);
